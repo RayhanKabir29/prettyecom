@@ -1,0 +1,415 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* 02 / Typography — self-hosted fonts (Tinos 700, Arimo 400/700) */
+@import "@fontsource/tinos/latin-700.css";
+@import "@fontsource/arimo/latin-400.css";
+@import "@fontsource/arimo/latin-700.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Fresh & Pretty — 01 / Color foundation
+ * Source: Figma "Fresh and Pretty's team library", node 3344:1376
+ *
+ * Three layers, each only referencing the one above it:
+ *   1. Primitives  (--fp-*)        exact Figma variables, never used directly in components
+ *   2. Semantic roles              surface / text / action / border / accent
+ *   3. shadcn tokens               --background, --primary, ... mapped onto the roles
+ *
+ * Rule from the spec: "Use roles, not raw values."
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Primitives — 12 colors, sRGB hex, names match Figma variables    */
+/* ------------------------------------------------------------------ */
+:root {
+  --fp-purple-900: #2d1b4e; /* Deep plum */
+  --fp-purple-800: #4a2d6e; /* Aubergine */
+  --fp-purple-600: #6b3fa0; /* Botanical purple */
+  --fp-purple-400: #81659e; /* Muted violet */
+  --fp-purple-300: #9b7dc0; /* Soft lilac — decorative only, 3.25:1 on porcelain */
+  --fp-purple-200: #c5b8e8; /* Lilac border */
+  --fp-purple-150: #ddd1ec; /* Lavender rule */
+  --fp-purple-100: #e8d8f5; /* Petal lavender */
+  --fp-purple-075: #ede4f7; /* Lavender wash */
+  --fp-purple-025: #faf7ff; /* Porcelain */
+  --fp-neutral-000: #ffffff; /* Pure white */
+  --fp-rose-500: #e8336d; /* Rose accent — promotions only */
+  /* TODO confirm in Figma — sampled from the catalog screenshot ("10%" badge).
+     Darker accessible promotion treatment: white text passes AA. */
+  --fp-rose-700: #8e0226;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Semantic roles                                                   */
+/* ------------------------------------------------------------------ */
+:root {
+  /* Surfaces */
+  --fp-surface-canvas: var(--fp-purple-025); /* Page background */
+  --fp-surface-raised: var(--fp-neutral-000); /* Inputs and elevated content */
+  --fp-surface-subtle: var(--fp-purple-075); /* Selected panels, inactive button fill */
+  --fp-surface-disabled: var(--fp-purple-075);
+  --fp-surface-inverse: var(--fp-purple-900); /* Announcement and footer bands */
+
+  /* Text */
+  --fp-text-primary: var(--fp-purple-900); /* Headings, labels, product names */
+  --fp-text-secondary: var(--fp-purple-800); /* Body copy, supporting descriptions */
+  --fp-text-muted: var(--fp-purple-400); /* Metadata on porcelain, inactive labels */
+  --fp-text-disabled: var(--fp-purple-400);
+  --fp-text-inverse: var(--fp-purple-100); /* Supporting text on deep plum */
+
+  /* Actions */
+  --fp-action-default: var(--fp-purple-600); /* Primary action, links, secondary border */
+  --fp-action-hover: var(--fp-purple-800); /* Primary hover; secondary/tertiary hover text */
+  --fp-action-pressed: var(--fp-purple-900); /* Primary pressed; secondary/tertiary pressed text */
+  --fp-action-on-solid: var(--fp-neutral-000); /* Labels on primary actions, every enabled state */
+  --fp-focus-ring: var(--fp-purple-600);
+
+  /* Borders */
+  --fp-border-default: var(--fp-purple-200); /* Quiet fields */
+  --fp-border-disabled: var(--fp-purple-200); /* Disabled secondary outline */
+  --fp-border-subtle: var(--fp-purple-150); /* Decorative dividers — not a control boundary */
+
+  /* Accent */
+  --fp-accent-promotion: var(--fp-rose-500); /* Sale accents only — not primary actions or errors */
+  --fp-accent-promotion-strong: var(--fp-rose-700); /* Sale badges with small white text */
+}
+
+/* ------------------------------------------------------------------ */
+/* 03 / Buttons — dimension variables (Figma node 3344:1759)           */
+/* "A consistent, generous pill." Heights 36 / 44 / 52, horizontal     */
+/* padding 16 / 22 / 28, minimum widths 120 / 144 / 168 (hug label).   */
+/* ------------------------------------------------------------------ */
+:root {
+  --fp-button-radius: 3rem; /* 48px */
+  --fp-button-border-width: 1px; /* Secondary outline */
+  --fp-button-focus-width: 2px;
+  --fp-button-focus-offset: 3px; /* Ring sits outside the button bounds */
+
+  --fp-button-height-small: 2.25rem; /* 36 — touch target is extended to 44 */
+  --fp-button-height-medium: 2.75rem; /* 44 */
+  --fp-button-height-large: 3.25rem; /* 52 */
+
+  --fp-button-padding-small: 1rem; /* 16 */
+  --fp-button-padding-medium: 1.375rem; /* 22 */
+  --fp-button-padding-large: 1.75rem; /* 28 */
+
+  --fp-button-min-width-small: 7.5rem; /* 120 */
+  --fp-button-min-width-medium: 9rem; /* 144 */
+  --fp-button-min-width-large: 10.5rem; /* 168 */
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. shadcn/ui tokens → semantic roles                                */
+/* ------------------------------------------------------------------ */
+:root {
+  --radius: 0.5rem;
+
+  --background: var(--fp-surface-canvas);
+  --foreground: var(--fp-text-primary);
+
+  --card: var(--fp-surface-raised);
+  --card-foreground: var(--fp-text-primary);
+
+  --popover: var(--fp-surface-raised);
+  --popover-foreground: var(--fp-text-primary);
+
+  --primary: var(--fp-action-default);
+  --primary-foreground: var(--fp-action-on-solid);
+
+  --secondary: var(--fp-surface-subtle);
+  --secondary-foreground: var(--fp-text-primary);
+
+  --muted: var(--fp-surface-subtle);
+  --muted-foreground: var(--fp-text-muted);
+
+  --accent: var(--fp-surface-subtle); /* shadcn "accent" = hover/selected bg, not the promo rose */
+  --accent-foreground: var(--fp-text-primary);
+
+  /*
+   * TODO: the color spec has no error/destructive color yet
+   * ("Validation, success and warning colors require a separate semantic
+   *  extension; do not repurpose rose"). Temporary accessible red until
+   *  that extension is designed.
+   */
+  --destructive: #b42318;
+  --destructive-foreground: var(--fp-neutral-000);
+
+  --border: var(--fp-border-subtle);
+  --input: var(--fp-border-default);
+  --ring: var(--fp-focus-ring);
+
+  --sidebar: var(--fp-surface-raised);
+  --sidebar-foreground: var(--fp-text-primary);
+  --sidebar-primary: var(--fp-action-default);
+  --sidebar-primary-foreground: var(--fp-action-on-solid);
+  --sidebar-accent: var(--fp-surface-subtle);
+  --sidebar-accent-foreground: var(--fp-text-primary);
+  --sidebar-border: var(--fp-border-subtle);
+  --sidebar-ring: var(--fp-focus-ring);
+}
+
+/* ------------------------------------------------------------------ */
+/* Tailwind utilities                                                  */
+/* ------------------------------------------------------------------ */
+@theme inline {
+  /* Primitives: bg-fp-purple-600, text-fp-rose-500 ... (prefer roles below) */
+  --color-fp-purple-900: var(--fp-purple-900);
+  --color-fp-purple-800: var(--fp-purple-800);
+  --color-fp-purple-600: var(--fp-purple-600);
+  --color-fp-purple-400: var(--fp-purple-400);
+  --color-fp-purple-300: var(--fp-purple-300);
+  --color-fp-purple-200: var(--fp-purple-200);
+  --color-fp-purple-150: var(--fp-purple-150);
+  --color-fp-purple-100: var(--fp-purple-100);
+  --color-fp-purple-075: var(--fp-purple-075);
+  --color-fp-purple-025: var(--fp-purple-025);
+  --color-fp-neutral-000: var(--fp-neutral-000);
+  --color-fp-rose-500: var(--fp-rose-500);
+  --color-fp-rose-700: var(--fp-rose-700);
+
+  /* Semantic roles: bg-surface-canvas, text-text-secondary, border-border-default ... */
+  --color-surface-canvas: var(--fp-surface-canvas);
+  --color-surface-raised: var(--fp-surface-raised);
+  --color-surface-subtle: var(--fp-surface-subtle);
+  --color-surface-disabled: var(--fp-surface-disabled);
+  --color-surface-inverse: var(--fp-surface-inverse);
+  --color-text-primary: var(--fp-text-primary);
+  --color-text-secondary: var(--fp-text-secondary);
+  --color-text-muted: var(--fp-text-muted);
+  --color-text-disabled: var(--fp-text-disabled);
+  --color-text-inverse: var(--fp-text-inverse);
+  --color-action-default: var(--fp-action-default);
+  --color-action-hover: var(--fp-action-hover);
+  --color-action-pressed: var(--fp-action-pressed);
+  --color-action-on-solid: var(--fp-action-on-solid);
+  --color-focus-ring: var(--fp-focus-ring);
+  --color-border-default: var(--fp-border-default);
+  --color-border-disabled: var(--fp-border-disabled);
+  --color-border-subtle: var(--fp-border-subtle);
+  --color-accent-promotion: var(--fp-accent-promotion);
+  --color-accent-promotion-strong: var(--fp-accent-promotion-strong);
+
+  /* shadcn: bg-background, bg-primary, text-muted-foreground ... */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ------------------------------------------------------------------ */
+/* 02 / Typography — Figma node 3344:1602                              */
+/*                                                                    */
+/* Tinos Bold   = the editorial voice. Headings only; never form       */
+/*                fields or button labels.                            */
+/* Arimo 400/700 = the everyday voice. Body, prices, nav, actions.     */
+/* px → rem at a 16px base. Line heights preserved; never lock text   */
+/* containers to a fixed height.                                      */
+/* ------------------------------------------------------------------ */
+@theme {
+  --font-serif: "Tinos", Georgia, serif; /* font-serif → editorial */
+  --font-sans: "Arimo", Arial, sans-serif; /* font-sans  → everyday (default) */
+}
+
+/*
+ * Named text recipes: one class sets family, size, line height,
+ * weight and tracking. Combine with a color role, e.g.
+ *   <h1 className="type-heading-page text-text-primary">
+ */
+
+/* Editorial — Tinos 700 */
+@utility type-display-hero {
+  font-family: var(--font-serif);
+  font-size: 3rem; /* 48 */
+  line-height: 3.1875rem; /* 51 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-heading-page {
+  font-family: var(--font-serif);
+  font-size: 2.75rem; /* 44 */
+  line-height: 3.0625rem; /* 49 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-heading-section {
+  font-family: var(--font-serif);
+  font-size: 2.25rem; /* 36 */
+  line-height: 2.5rem; /* 40 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-heading-feature {
+  font-family: var(--font-serif);
+  font-size: 1.875rem; /* 30 */
+  line-height: 2.0625rem; /* 33 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-heading-subsection {
+  font-family: var(--font-serif);
+  font-size: 1.625rem; /* 26 */
+  line-height: 1.875rem; /* 30 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-heading-card {
+  font-family: var(--font-serif);
+  font-size: 1.375rem; /* 22 */
+  line-height: 1.625rem; /* 26 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+/* Everyday — Arimo */
+@utility type-body-default {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem; /* 15 */
+  line-height: 1.375rem; /* 22 */
+  font-weight: 400;
+  letter-spacing: 0;
+}
+@utility type-body-compact {
+  font-family: var(--font-sans);
+  font-size: 0.875rem; /* 14 */
+  line-height: 1.25rem; /* 20 */
+  font-weight: 400;
+  letter-spacing: 0;
+}
+@utility type-body-small {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem; /* 13 */
+  line-height: 1.25rem; /* 20 */
+  font-weight: 400;
+  letter-spacing: 0;
+}
+@utility type-label-small {
+  font-family: var(--font-sans);
+  font-size: 0.75rem; /* 12 */
+  line-height: 1.125rem; /* 18 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-label-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem; /* 13 */
+  line-height: 1.125rem; /* 18 */
+  font-weight: 700;
+  letter-spacing: 0.125rem; /* 2px */
+  text-transform: uppercase;
+}
+@utility type-button-small {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem; /* 13 */
+  line-height: 1.125rem; /* 18 */
+  font-weight: 700;
+  letter-spacing: 0.03125rem; /* 0.5px */
+  text-transform: uppercase;
+}
+@utility type-button-medium {
+  font-family: var(--font-sans);
+  font-size: 0.875rem; /* 14 */
+  line-height: 1.25rem; /* 20 */
+  font-weight: 700;
+  letter-spacing: 0.03125rem; /* 0.5px */
+  text-transform: uppercase;
+}
+@utility type-button-large {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem; /* 15 */
+  line-height: 1.25rem; /* 20 */
+  font-weight: 700;
+  letter-spacing: 0.03125rem; /* 0.5px */
+  text-transform: uppercase;
+}
+@utility type-utility-caption {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem; /* 11 */
+  line-height: 1rem; /* 16 */
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased type-body-default;
+  }
+  /* Body copy reads best at 45–75 characters per line */
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+}
+
+/* Product reference palette: burgundy actions and soft blush surfaces. */
+.product-page-theme {
+  --fp-purple-900: #870d2e;
+  --fp-purple-800: #6e1230;
+  --fp-purple-600: #a20f3c;
+  --fp-purple-400: #a85a70;
+  --fp-purple-300: #bb8496;
+  --fp-purple-200: #efc4d0;
+  --fp-purple-150: #f3d6de;
+  --fp-purple-100: #f9e2e9;
+  --fp-purple-075: #fff1f4;
+  --fp-purple-025: #fffdfd;
+  --fp-rose-500: #e72262;
+  --fp-rose-700: #8e1238;
+  --fp-surface-canvas: #fffdfd;
+  --fp-surface-raised: #ffffff;
+  --fp-surface-subtle: #fff1f4;
+  --fp-surface-disabled: #fff1f4;
+  --fp-surface-inverse: #870d2e;
+  --fp-text-primary: #870d2e;
+  --fp-text-secondary: #6e1230;
+  --fp-text-muted: #a85a70;
+  --fp-text-disabled: #a85a70;
+  --fp-text-inverse: #f9e2e9;
+  --fp-action-default: #a20f3c;
+  --fp-action-hover: #6e1230;
+  --fp-action-pressed: #870d2e;
+  --fp-action-on-solid: #ffffff;
+  --fp-focus-ring: #a20f3c;
+  --fp-border-default: #efc4d0;
+  --fp-border-disabled: #efc4d0;
+  --fp-border-subtle: #f3d6de;
+  --fp-accent-promotion: #e72262;
+  --fp-accent-promotion-strong: #8e1238;
+  background: var(--fp-surface-canvas);
+  color: var(--fp-text-primary);
+}
