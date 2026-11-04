@@ -1,7 +1,8 @@
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ShoppingCart } from "lucide-react"
 import { Link } from "react-router"
 
 import { discountPercent, formatPrice, type Product } from "@/data/products"
+import { useCart } from "@/lib/cart"
 import { cn } from "@/lib/utils"
 
 import { Button } from "./button"
@@ -37,6 +38,7 @@ function Price({ product }: { product: Product }) {
 }
 
 function ProductCard({ product, variant = "compact", showDescription = true, showAction = true, className }: ProductCardProps) {
+  const { add } = useCart()
   const discount = discountPercent(product)
   const href = `/products/${product.slug}`
 
@@ -104,10 +106,14 @@ function ProductCard({ product, variant = "compact", showDescription = true, sho
           </h3>
           <div className="mt-2 flex flex-1 flex-col items-center justify-end">
             <Price product={product} />
-            <Button asChild size="small" fullWidth className="mt-2 min-h-9 min-w-0 gap-1 px-2 sm:px-3">
-            <Link to={href} aria-label={`Shop now: ${product.name}`}>
-              Shop now <ArrowRight aria-hidden className="size-3" />
-            </Link>
+            <Button
+              size="small"
+              fullWidth
+              className="mt-2 min-h-9 min-w-0 gap-1 px-2 sm:px-3"
+              aria-label={`Add ${product.name} to cart`}
+              onClick={() => add({ productId: product.id, size: "Standard", quantity: 1 })}
+            >
+              <ShoppingCart aria-hidden className="size-3.5" /> Add to cart
             </Button>
           </div>
         </div>

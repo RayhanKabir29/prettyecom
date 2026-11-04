@@ -11,37 +11,34 @@
 
 /*
  * Fresh & Pretty — 01 / Color foundation
- * Source: Figma "Fresh and Pretty's team library", node 3344:1376
+ * Shared brand palette: burgundy actions, deep burgundy text, and blush surfaces.
  *
  * Three layers, each only referencing the one above it:
- *   1. Primitives  (--fp-*)        exact Figma variables, never used directly in components
+ *   1. Primitives  (--fp-*)        raw palette values; components use semantic roles
  *   2. Semantic roles              surface / text / action / border / accent
  *   3. shadcn tokens               --background, --primary, ... mapped onto the roles
  *
- * Rule from the spec: "Use roles, not raw values."
+ * Rule: use roles in components, not raw values.
  */
 
 /* ------------------------------------------------------------------ */
-/* 1. Primitives — 12 colors, sRGB hex, names match Figma variables    */
+/* 1. Primitives — shared burgundy and blush palette                   */
 /* ------------------------------------------------------------------ */
 :root {
-  --fp-purple-900: #2d1b4e; /* Deep plum */
-  --fp-purple-800: #4a2d6e; /* Aubergine */
-  --fp-purple-600: #6b3fa0; /* Botanical purple */
-  --fp-purple-400: #81659e; /* Muted violet */
-  --fp-purple-300: #9b7dc0; /* Soft lilac — decorative only, 3.25:1 on porcelain */
-  --fp-purple-200: #c5b8e8; /* Lilac border */
-  --fp-purple-150: #ddd1ec; /* Lavender rule */
-  --fp-purple-100: #e8d8f5; /* Petal lavender */
-  --fp-purple-075: #ede4f7; /* Lavender wash */
-  --fp-purple-025: #faf7ff; /* Porcelain */
+  --fp-purple-900: #870d2e; /* Deep burgundy */
+  --fp-purple-800: #6e1230; /* Burgundy shadow */
+  --fp-purple-600: #a20f3c; /* Burgundy action */
+  --fp-purple-400: #a85a70; /* Muted burgundy */
+  --fp-purple-300: #bb8496; /* Dusty rose */
+  --fp-purple-200: #efc4d0; /* Blush border */
+  --fp-purple-150: #f3d6de; /* Blush rule */
+  --fp-purple-100: #f9e2e9; /* Petal blush */
+  --fp-purple-075: #fff1f4; /* Blush wash */
+  --fp-purple-025: #fffdfd; /* Warm porcelain */
   --fp-neutral-000: #ffffff; /* Pure white */
-  --fp-rose-500: #e8336d; /* Rose accent — promotions only */
-  /* TODO confirm in Figma — sampled from the catalog screenshot ("10%" badge).
-     Darker accessible promotion treatment: white text passes AA. */
-  --fp-rose-700: #8e0226;
+  --fp-rose-500: #e72262; /* Rose accent — promotions only */
+  --fp-rose-700: #8e1238; /* Dark rose promotion treatment */
 }
-
 /* ------------------------------------------------------------------ */
 /* 2. Semantic roles                                                   */
 /* ------------------------------------------------------------------ */
@@ -390,42 +387,4 @@
   h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
   }
-}
-
-/* Product reference palette: burgundy actions and soft blush surfaces. */
-.product-page-theme {
-  --fp-purple-900: #870d2e;
-  --fp-purple-800: #6e1230;
-  --fp-purple-600: #a20f3c;
-  --fp-purple-400: #a85a70;
-  --fp-purple-300: #bb8496;
-  --fp-purple-200: #efc4d0;
-  --fp-purple-150: #f3d6de;
-  --fp-purple-100: #f9e2e9;
-  --fp-purple-075: #fff1f4;
-  --fp-purple-025: #fffdfd;
-  --fp-rose-500: #e72262;
-  --fp-rose-700: #8e1238;
-  --fp-surface-canvas: #fffdfd;
-  --fp-surface-raised: #ffffff;
-  --fp-surface-subtle: #fff1f4;
-  --fp-surface-disabled: #fff1f4;
-  --fp-surface-inverse: #870d2e;
-  --fp-text-primary: #870d2e;
-  --fp-text-secondary: #6e1230;
-  --fp-text-muted: #a85a70;
-  --fp-text-disabled: #a85a70;
-  --fp-text-inverse: #f9e2e9;
-  --fp-action-default: #a20f3c;
-  --fp-action-hover: #6e1230;
-  --fp-action-pressed: #870d2e;
-  --fp-action-on-solid: #ffffff;
-  --fp-focus-ring: #a20f3c;
-  --fp-border-default: #efc4d0;
-  --fp-border-disabled: #efc4d0;
-  --fp-border-subtle: #f3d6de;
-  --fp-accent-promotion: #e72262;
-  --fp-accent-promotion-strong: #8e1238;
-  background: var(--fp-surface-canvas);
-  color: var(--fp-text-primary);
 }
