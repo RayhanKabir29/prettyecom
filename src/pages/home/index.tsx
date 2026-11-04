@@ -10,9 +10,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <PopularProducts />
       <Benefits />
       <Collection />
-      <PopularProducts />
       <NewsletterBanner
         innerClassName="lg:mx-[99px]"
         title="Get 10% Off Your First Order"

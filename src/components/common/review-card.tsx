@@ -12,7 +12,7 @@ function ReviewCard({ review, className }: { review: Review; className?: string 
       <p className="flex-1 text-[0.8125rem] leading-5 text-text-secondary">“{review.body}”</p>
       <footer className="flex flex-col gap-0.5">
         <span className="text-xs font-bold text-text-primary">{review.author}</span>
-        <time dateTime={review.date} className="type-utility-caption text-fp-purple-300">
+        <time dateTime={review.date} className="type-utility-caption text-text-muted">
           {formatReviewDate(review.date)}
         </time>
       </footer>

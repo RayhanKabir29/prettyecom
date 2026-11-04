@@ -29,14 +29,14 @@ function RelatedCard({ product }: { product: Product }) {
         <span className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-lg bg-surface-raised p-2">
           <img src={product.image} alt="" loading="lazy" className="size-full object-contain transition-transform duration-300 group-hover:scale-105" />
         </span>
-        <span className="mt-2 line-clamp-2 min-h-8 text-[0.6875rem] leading-4 font-bold text-text-primary">{product.name}</span>
+        <span className="type-product-title mt-2 line-clamp-2 min-h-10 text-text-primary">{product.name}</span>
       </Link>
       <p className="mt-1 flex items-center justify-center gap-1 text-[0.625rem] text-accent-promotion">
         <span aria-hidden className="flex">{Array.from({ length: 5 }, (_, i) => <Star key={i} className="size-2.5 fill-current" />)}</span>
         <span className="text-text-secondary">({product.rating?.toFixed(1) ?? "4.8"})</span>
       </p>
-      <p className="mt-1 flex items-baseline justify-center gap-1.5 text-xs font-bold text-accent-promotion-strong">
-        {formatPrice(product.price)}{product.compareAtPrice && <s className="text-[0.625rem] font-normal text-text-muted">{formatPrice(product.compareAtPrice)}</s>}
+      <p className="type-price mt-1 flex items-baseline justify-center gap-1.5 text-action-default">
+        {formatPrice(product.price)}{product.compareAtPrice && <s className="type-body-small font-normal text-text-muted">{formatPrice(product.compareAtPrice)}</s>}
       </p>
       <Button size="small" className="mt-2 min-h-8 w-full gap-1 px-2 text-[0.6875rem]" onClick={() => add({ productId: product.id, size: "Standard", quantity: 1 })}>
         <ShoppingCart aria-hidden className="size-3.5" /> Add to Cart

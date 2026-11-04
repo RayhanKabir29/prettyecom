@@ -32,7 +32,7 @@ function Logo({ variant = "header", className }: { variant?: "header" | "footer"
       <span
         className={cn(
           "font-sans tracking-[2px] uppercase",
-          footer ? "text-[0.6875rem] leading-[0.8125rem] text-text-inverse" : "text-[0.625rem] leading-[0.6875rem] text-fp-purple-300"
+          footer ? "text-[0.6875rem] leading-[0.8125rem] text-text-inverse" : "text-[0.625rem] leading-[0.6875rem] text-text-muted"
         )}
       >
         Skincare

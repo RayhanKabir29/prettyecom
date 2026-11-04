@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils"
 
 /**
  * Centered heading between two lilac rules.
- *  eyebrow — Arimo Bold 16 / 2.2px tracking, uppercase (Figma 3313:883 "Popular products")
+ *  eyebrow — shared label-eyebrow type token
  *  serif   — Tinos Bold 36 (Figma 3316:80 "Testimonials")
  */
 function SectionHeading({
@@ -28,8 +28,8 @@ function SectionHeading({
         className={cn(
           "text-center text-text-primary",
           variant === "eyebrow"
-            ? "font-sans text-base leading-[1.125rem] font-bold tracking-[2.2px] uppercase"
-            : "type-heading-section"
+            ? "type-label-eyebrow"
+            : "text-2xl leading-7 sm:type-heading-section"
         )}
       >
         {children}

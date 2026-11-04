@@ -49,14 +49,14 @@ const buttonVariants = cva(
         secondary: [
           "border-action-default bg-surface-raised text-action-default",
           "hover:border-action-hover hover:bg-surface-subtle hover:text-action-hover",
-          "active:border-action-pressed active:bg-fp-purple-100 active:text-action-pressed",
+          "active:border-action-pressed active:bg-surface-hover active:text-action-pressed",
           "disabled:border-border-disabled disabled:bg-surface-disabled disabled:text-text-disabled",
           "aria-disabled:border-border-disabled aria-disabled:bg-surface-disabled aria-disabled:text-text-disabled",
         ],
         tertiary: [
           "bg-transparent text-action-default",
           "hover:bg-surface-subtle hover:text-action-hover",
-          "active:bg-fp-purple-100 active:text-action-pressed",
+          "active:bg-surface-hover active:text-action-pressed",
           // Tertiary stays transparent when disabled
           "disabled:bg-transparent disabled:text-text-disabled",
           "aria-disabled:bg-transparent aria-disabled:text-text-disabled",

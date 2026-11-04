@@ -41,7 +41,7 @@ function Gallery({ images, caption, productName, badge }: { images: (string | un
         />
         {badge && <span className="absolute top-3 right-3 rounded-full bg-accent-promotion px-3 py-1 text-sm font-bold text-action-on-solid">{badge}</span>}
       </div>
-      <p className="type-utility-caption order-3 text-fp-purple-300 lg:col-start-2">{caption}</p>
+      <p className="type-utility-caption order-3 text-text-muted lg:col-start-2">{caption}</p>
     </div>
   )
 }

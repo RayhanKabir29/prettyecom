@@ -21,8 +21,8 @@ function Benefits() {
                 <Icon aria-hidden className="size-5" />
               </span>
               <span className="flex flex-col gap-0.5 lg:whitespace-nowrap">
-                <span className="text-sm font-bold text-text-primary">{title}</span>
-                <span className="text-xs text-fp-purple-300">{text}</span>
+                <span className="type-label-small text-text-primary">{title}</span>
+                <span className="type-body-small text-text-muted">{text}</span>
               </span>
             </li>
           </Fragment>

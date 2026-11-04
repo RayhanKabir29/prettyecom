@@ -35,11 +35,11 @@ function Collection() {
       <div className="relative isolate flex min-h-[300px] items-end overflow-hidden rounded-[22px] bg-surface-subtle p-7 md:min-h-[340px] md:p-9 lg:min-h-[340px] lg:items-center lg:px-9">
         <img src={collectionImage} alt="Woman enjoying a skincare facial" className="absolute inset-0 -z-10 size-full object-cover object-center" />
         <div className="max-w-[300px] rounded-xl bg-surface-canvas/85 p-5 backdrop-blur-sm md:p-6">
-          <p className="text-xs font-bold tracking-[1.8px] text-action-default uppercase">Beauty care collection</p>
-          <h2 className="mt-3 font-serif text-[2rem] leading-[2.1rem] font-bold text-text-primary">
+          <p className="type-label-eyebrow text-action-default">Beauty care collection</p>
+          <h2 className="type-heading-feature mt-3 text-text-primary">
             Look Beautiful, Feel Confident
           </h2>
-          <p className="mt-3 text-sm leading-5 text-text-secondary">Pamper yourself with skin-loving everyday essentials.</p>
+          <p className="type-body-compact mt-3 text-text-secondary">Pamper yourself with skin-loving everyday essentials.</p>
           <Button asChild className="mt-5 gap-2">
             <Link to="/catalog">Explore collection <ArrowRight aria-hidden className="size-[14px]" /></Link>
           </Button>
@@ -51,10 +51,10 @@ function Collection() {
         <ul className="grid grid-cols-2 gap-3">
           {brands.map((brand) => (
             <li key={brand.name}>
-              <Link to={`/products/${brand.slug}`} aria-label={`Shop ${brand.name}`} className="group flex h-[98px] items-center justify-between overflow-hidden rounded-2xl bg-surface-subtle pl-4 transition-colors hover:bg-fp-purple-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring sm:h-[108px]">
+              <Link to={`/products/${brand.slug}`} aria-label={`Shop ${brand.name}`} className="group flex h-[98px] items-center justify-between overflow-hidden rounded-2xl bg-surface-subtle pl-4 transition-colors hover:bg-surface-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring sm:h-[108px]">
                 <span className="min-w-0">
-                  <span className="block font-serif text-base font-bold text-text-primary sm:text-lg">{brand.name}</span>
-                  <span className="mt-2 flex items-center gap-1 text-xs font-bold text-action-default">Shop now <ArrowRight aria-hidden className="size-3 transition-transform group-hover:translate-x-0.5" /></span>
+                  <span className="type-heading-card block text-text-primary">{brand.name}</span>
+                  <span className="type-label-small mt-2 flex items-center gap-1 text-action-default">Shop now <ArrowRight aria-hidden className="size-3 transition-transform group-hover:translate-x-0.5" /></span>
                 </span>
                 <span aria-hidden className="flex h-full w-[40%] shrink-0 items-center justify-center overflow-hidden px-1 py-2">
                   <img

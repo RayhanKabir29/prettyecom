@@ -101,7 +101,7 @@ export default function CartPage() {
                     <span className="md:sr-only">Price: </span>
                     {formatPrice(l.product.price)}
                     {l.product.compareAtPrice && (
-                      <s className="ml-1.5 text-[0.6875rem] text-fp-purple-300 md:ml-0 md:block">{formatPrice(l.product.compareAtPrice)}</s>
+                      <s className="type-utility-caption ml-1.5 text-text-muted md:ml-0 md:block">{formatPrice(l.product.compareAtPrice)}</s>
                     )}
                   </p>
                   <div className="col-start-2 flex items-center justify-between gap-3 md:col-start-auto md:contents">

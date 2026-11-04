@@ -9,8 +9,7 @@ import { Button } from "./button"
 type ProductCardProps = {
   product: Product
   /**
-   * compact — landing carousel (Figma 3313:888): 3px lilac border, name + price,
-   *           bright rose badge clipped by the card edge. Whole card is the link.
+   * compact — home best sellers: compact product image, name, price, and direct action.
    * catalog — catalog grid: 1px border, description, full-width "Shop now"
    *           secondary button, dark rose badge in the photo corner.
    */
@@ -26,11 +25,11 @@ function Price({ product }: { product: Product }) {
   return (
     <p className="flex items-baseline justify-center gap-[9px]">
       <span className="sr-only">Price</span>
-      <span className="text-base text-action-default">{formatPrice(product.price)}</span>
+      <span className="type-price text-action-default">{formatPrice(product.price)}</span>
       {product.compareAtPrice && (
         <>
           <span className="sr-only">, was</span>
-          <s className="text-[0.8125rem] text-fp-purple-300">{formatPrice(product.compareAtPrice)}</s>
+          <s className="type-body-small text-text-muted">{formatPrice(product.compareAtPrice)}</s>
         </>
       )}
     </p>
@@ -63,7 +62,7 @@ function ProductCard({ product, variant = "compact", showDescription = true, sho
           </span>
         )}
         <div className="flex flex-1 flex-col items-center gap-2 px-5 pt-5 pb-5 text-center">
-          <h3 className="text-[0.9375rem] leading-5 font-bold text-text-primary">
+          <h3 className="type-product-title text-text-primary">
             <Link to={href} className="rounded-sm outline-none after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring">
               {product.name}
             </Link>
@@ -85,30 +84,33 @@ function ProductCard({ product, variant = "compact", showDescription = true, sho
   }
 
   return (
-    <article className={cn("group relative", className)}>
-      <Link
-        to={href}
-        className="relative flex h-full flex-col items-center gap-[11px] overflow-hidden rounded-[18px] border-3 border-border-default bg-surface-canvas pb-4 transition-colors hover:border-action-default outline-none focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-focus-ring"
-      >
-        <div className="aspect-[243/138] w-full overflow-hidden">
+    <article className={cn("group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border-subtle bg-surface-raised shadow-sm transition-all hover:-translate-y-0.5 hover:border-border-default hover:shadow-md", className)}>
+        <Link to={href} aria-label={`View ${product.name}`} className="relative block aspect-[4/3] w-full overflow-hidden bg-surface-subtle outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-focus-ring">
           <img
             src={product.image}
             alt=""
             loading="lazy"
             className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
+          {discount > 0 && (
+            <span className="absolute top-2 left-2 inline-flex items-center rounded-full bg-accent-promotion-strong px-2.5 py-1 text-[0.625rem] leading-none font-bold tracking-wide text-action-on-solid shadow-sm sm:top-3 sm:left-3 sm:text-xs">
+              {discount}% OFF<span className="sr-only"> on {product.name}</span>
+            </span>
+          )}
+        </Link>
+        <div className="flex flex-1 flex-col px-2.5 pt-2.5 pb-3 sm:px-3 sm:pt-3 sm:pb-3.5">
+          <h3 className="type-product-title line-clamp-2 min-h-8 text-xs leading-4 text-text-primary sm:min-h-10 sm:text-[0.9375rem] sm:leading-5">
+            <Link to={href} className="rounded-sm outline-none hover:text-action-default focus-visible:underline">{product.name}</Link>
+          </h3>
+          <div className="mt-2 flex flex-1 flex-col items-center justify-end">
+            <Price product={product} />
+            <Button asChild size="small" fullWidth className="mt-2 min-h-9 min-w-0 gap-1 px-2 sm:px-3">
+            <Link to={href} aria-label={`Shop now: ${product.name}`}>
+              Shop now <ArrowRight aria-hidden className="size-3" />
+            </Link>
+            </Button>
+          </div>
         </div>
-        <h3 className="line-clamp-2 min-h-10 px-1.5 text-center text-[0.9375rem] leading-5 font-bold text-text-primary">
-          {product.name}
-        </h3>
-        <Price product={product} />
-        {discount > 0 && (
-          /* Sits partly above the card edge and is clipped by it, as in Figma */
-          <span className="pointer-events-none absolute -top-3 left-0.5 inline-flex h-[33px] w-[51px] items-center justify-center rounded-md bg-accent-promotion text-sm leading-4 font-bold text-fp-neutral-000">
-            {discount}%<span className="sr-only"> off</span>
-          </span>
-        )}
-      </Link>
     </article>
   )
 }

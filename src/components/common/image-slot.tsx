@@ -18,7 +18,7 @@ function ImageSlot({
   ...props
 }: Omit<React.ComponentProps<"img">, "src"> & { src?: string; imgClassName?: string }) {
   return (
-    <div data-slot="image-slot" data-empty={!src || undefined} className={cn("overflow-hidden bg-fp-purple-100", className)}>
+    <div data-slot="image-slot" data-empty={!src || undefined} className={cn("overflow-hidden bg-surface-hover", className)}>
       {src && <img src={src} alt={alt} className={cn("size-full object-cover", imgClassName)} {...props} />}
     </div>
   )

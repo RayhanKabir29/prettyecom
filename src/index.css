@@ -50,6 +50,7 @@
   --fp-surface-canvas: var(--fp-purple-025); /* Page background */
   --fp-surface-raised: var(--fp-neutral-000); /* Inputs and elevated content */
   --fp-surface-subtle: var(--fp-purple-075); /* Selected panels, inactive button fill */
+  --fp-surface-hover: var(--fp-purple-100); /* Soft hover and image placeholder fill */
   --fp-surface-disabled: var(--fp-purple-075);
   --fp-surface-inverse: var(--fp-purple-900); /* Announcement and footer bands */
 
@@ -174,6 +175,7 @@
   --color-surface-canvas: var(--fp-surface-canvas);
   --color-surface-raised: var(--fp-surface-raised);
   --color-surface-subtle: var(--fp-surface-subtle);
+  --color-surface-hover: var(--fp-surface-hover);
   --color-surface-disabled: var(--fp-surface-disabled);
   --color-surface-inverse: var(--fp-surface-inverse);
   --color-text-primary: var(--fp-text-primary);
@@ -287,6 +289,20 @@
   font-family: var(--font-serif);
   font-size: 1.375rem; /* 22 */
   line-height: 1.625rem; /* 26 */
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-product-title {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+@utility type-price {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.375rem;
   font-weight: 700;
   letter-spacing: 0;
 }

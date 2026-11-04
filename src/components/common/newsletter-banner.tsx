@@ -54,7 +54,7 @@ function NewsletterBanner({
             type="email"
             required
             placeholder="Your email address"
-            className="h-[45px] w-full min-w-0 rounded-full bg-surface-canvas sm:flex-1 px-[22px] text-[0.9375rem] text-text-primary placeholder:text-fp-purple-300 outline-none focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-fp-neutral-000"
+            className="type-body-default h-[45px] w-full min-w-0 rounded-full bg-surface-canvas sm:flex-1 px-[22px] text-text-primary placeholder:text-text-muted outline-none focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-fp-neutral-000"
           />
           <Button
             type="submit"
