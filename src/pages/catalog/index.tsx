@@ -181,7 +181,7 @@ export default function CatalogPage() {
           {/* Product grid */}
           <div className="pt-4">
             {visible.length ? (
-              <ul className="grid gap-[26px] sm:grid-cols-2">
+              <ul className="grid grid-cols-1 gap-[26px] sm:grid-cols-2 lg:grid-cols-3">
                 {visible.map((p) => (
                   <li key={p.id}>
                     <ProductCard product={p} variant="catalog" className="h-full" />

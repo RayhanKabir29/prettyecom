@@ -10,7 +10,7 @@ function RelatedProducts({ products }: { products: Product[] }) {
   return (
     <section aria-labelledby="related-title" className="mx-auto max-w-[1200px] px-5 pt-6 pb-4 md:px-8 lg:px-[66px]">
       <SectionHeading id="related-title" variant="serif">You May Also Like</SectionHeading>
-      <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+      <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
         {products.map((product) => <li key={product.id}><RelatedCard product={product} /></li>)}
       </ul>
     </section>
@@ -21,7 +21,7 @@ function RelatedCard({ product }: { product: Product }) {
   const { add } = useCart()
   const [saved, setSaved] = React.useState(false)
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border-default bg-surface-raised p-2.5 shadow-[0_3px_12px_rgba(40,24,32,0.09)] transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-action-default hover:shadow-[0_14px_30px_rgba(40,24,32,0.16)] motion-reduce:transform-none motion-reduce:transition-none sm:p-3">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-surface-raised p-2.5 shadow-[0_6px_20px_rgba(40,24,32,0.14)] transition-[transform,box-shadow] duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_36px_rgba(40,24,32,0.22)] motion-reduce:transform-none motion-reduce:transition-none sm:p-3">
       <button type="button" aria-label={saved ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`} aria-pressed={saved} onClick={() => setSaved((value) => !value)} className="absolute top-3 right-3 z-10 inline-flex size-7 items-center justify-center rounded-full bg-surface-raised/90 text-text-primary outline-none hover:text-accent-promotion-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring">
         <Heart aria-hidden className={`size-4 ${saved ? "fill-current text-accent-promotion-strong" : ""}`} />
       </button>
