@@ -21,13 +21,13 @@ function RelatedCard({ product }: { product: Product }) {
   const { add } = useCart()
   const [saved, setSaved] = React.useState(false)
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border-subtle bg-surface-subtle p-2.5 sm:p-3">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border-default bg-surface-raised p-2.5 shadow-[0_3px_12px_rgba(40,24,32,0.09)] transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-action-default hover:shadow-[0_14px_30px_rgba(40,24,32,0.16)] motion-reduce:transform-none motion-reduce:transition-none sm:p-3">
       <button type="button" aria-label={saved ? `Remove ${product.name} from wishlist` : `Add ${product.name} to wishlist`} aria-pressed={saved} onClick={() => setSaved((value) => !value)} className="absolute top-3 right-3 z-10 inline-flex size-7 items-center justify-center rounded-full bg-surface-raised/90 text-text-primary outline-none hover:text-accent-promotion-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring">
         <Heart aria-hidden className={`size-4 ${saved ? "fill-current text-accent-promotion-strong" : ""}`} />
       </button>
       <Link to={`/products/${product.slug}`} className="flex flex-1 flex-col items-center text-center outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring">
         <span className="flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-lg bg-surface-raised p-2">
-          <img src={product.image} alt="" loading="lazy" className="size-full object-contain transition-transform duration-300 group-hover:scale-105" />
+          <img src={product.image} alt="" loading="lazy" className="size-full object-contain transition-transform duration-500 ease-out group-hover:scale-105" />
         </span>
         <span className="type-product-title mt-2 line-clamp-2 min-h-10 text-text-primary">{product.name}</span>
       </Link>
@@ -38,7 +38,7 @@ function RelatedCard({ product }: { product: Product }) {
       <p className="type-price mt-1 flex items-baseline justify-center gap-1.5 text-action-default">
         {formatPrice(product.price)}{product.compareAtPrice && <s className="type-body-small font-normal text-text-muted">{formatPrice(product.compareAtPrice)}</s>}
       </p>
-      <Button size="small" className="mt-2 min-h-8 w-full gap-1 px-2 text-[0.6875rem]" onClick={() => add({ productId: product.id, size: "Standard", quantity: 1 })}>
+      <Button size="small" className="mt-2 min-h-9 w-full min-w-0 gap-1 px-2 text-[0.6875rem] sm:px-3" onClick={() => add({ productId: product.id, size: "Standard", quantity: 1 })}>
         <ShoppingCart aria-hidden className="size-3.5" /> Add to Cart
       </Button>
     </article>

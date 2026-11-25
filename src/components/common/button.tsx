@@ -32,7 +32,7 @@ const buttonVariants = cva(
   [
     "relative inline-flex shrink-0 items-center justify-center gap-2",
     "rounded-(--fp-button-radius) border-(length:--fp-button-border-width) border-transparent",
-    "whitespace-nowrap select-none transition-[color,background-color,border-color] duration-150",
+    "whitespace-nowrap select-none transition-[color,background-color,border-color,box-shadow,transform] duration-200 ease-out",
     "outline-none focus-visible:outline-(length:--fp-button-focus-width) focus-visible:outline-offset-(--fp-button-focus-offset) focus-visible:outline-focus-ring focus-visible:outline-solid",
     "disabled:pointer-events-none aria-disabled:pointer-events-none",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
